@@ -4,7 +4,12 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
  body{
-  padding-top :120px;
+  padding-top :10px;
+  background-image:url('http://www.walldevil.com/wallpapers/a75/deadpool-red-background-wallpaper-marvel-wilson-spider-man-wallpapers.jpg');
+  background-repeat:no-repeat;
+  background-size:cover;
+  font-family: 'Pacifico', cursive;
+  font-size:20px
 }
 .btn-default,
 .btn-primary,

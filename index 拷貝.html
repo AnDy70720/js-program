@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src='fdb-all.min.js'></script>
+</head>
+<body>
+</body>
+</html>
+<script>
+var fdb = new ForerunnerDB();
+var db = fdb.db("class");
+
+var studentCollection = db.collection('students');
+
+studentCollection.insert({
+    name: "Koding",
+    age: 18
+});
+
+var newStudent = {
+    name: "Koding",
+    age: 18
+};
+for(var i =1;i<=10;i++){
+	var newStudent2= {
+		name: "Koding",
+		age: 8
+	}
+studentCollection.insert(newStudent2);
+}
+studentCollection.insert(newStudent);
+var result =studentCollection.find();
+console.log(result);
+console.log('my name :'+result[1].name);
+studentCollection.save();
+</script>

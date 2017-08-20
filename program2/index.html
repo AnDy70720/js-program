@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src='fdb-all.min.js'></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<table class="table table-bordered">
+        <thead>
+            <tr>
+                <td id='n'>id</td>
+                <td>姓名</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Orange</td>
+            </tr>
+        </tbody>
+    </table>
+</head>
+<body>
+<script>
+var fdb = new ForerunnerDB();
+var db = fdb.db("class");
+
+var studentCollection = db.collection('students');
+
+studentCollection.insert({
+    name: "Koding",
+    age: 18
+});
+
+var newStudent = {
+    name: "Koding",
+    age: 18
+};
+for(var i =1;i<=10;i++){
+    var newStudent2= {
+        name: "Koding",
+        age: 8
+    }
+studentCollection.insert(newStudent2);
+}
+studentCollection.insert(newStudent);
+var result =studentCollection.find();
+console.log(result);
+console.log('my name :'+result[1].name);
+studentCollection.save();
+$('#n').append(result[1]);
+</script>
+</body>
+</html>

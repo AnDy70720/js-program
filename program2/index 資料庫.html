@@ -5,13 +5,29 @@
   <meta name="viewport" content="width=device-width">
   <title>JS Bin</title>
   <script src='fdb-all.min.js'></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        
 </head>
 <body>
+<table class="table table-bordered">
+  <button id='a'>insert</button>
+  <thead>
+      <tr>
+        <td id='w'>id</td>
+        <td id='n'>age</td>
+        <td>姓名</td>
+        <td>操作</td>
+      </tr>
+  </thead>
+  <tbody>
+        </tbody>
+        </table>
 name<input type="type" id='x'>
-age <input type="type" id='y'>  
-<button id='a'>insert</button>
-<button id='b'>save</button>
+age <input type="type" id='y'> 
+age great than<input type='type' id="gt">
+<button id='searchFor'>search</button>
 <script>
 $('#a').click(function(){
   debugger;
@@ -22,18 +38,13 @@ $('#a').click(function(){
   studentCollection.insert(newStudent);
   console.log(studentCollection.find());
 });
-$('#b').click(function(){
-  studentCollection.save();
-});
+
+
+
 var fdb = new ForerunnerDB();
 var db = fdb.db("class");
 
 var studentCollection = db.collection('students');
-
-studentCollection.insert({
-    name: "Koding",
-    age: 18
-});
 
 var newStudent = {
     name: "Koding",
@@ -52,12 +63,41 @@ var newStudent4={
   name:'Fiona',
   age:10
 }
+
+function remove(){
+  debugger;
+  studentCollection.remove({
+     _id:$(this).data('remove')
+  })
+    $($(this).closest('tr')).remove();
+}
+studentCollection.insert(newStudent2);
 studentCollection.insert(newStudent3);
 studentCollection.insert(newStudent4);
-
 studentCollection.insert(newStudent);
-
 var result = studentCollection.find();
+function resultSearching(){
+  debugger;
+  var RESULT=studentCollection.find({
+     age:{
+    $gt:($('#gt').val())*1
+   }
+  });
+  console.log(RESULT);
+}
+$("#searchFor").click(resultSearching)
+for(var i =0;i<4;i++){
+  $('tbody').append('<tr><td>'+result[i]._id+'</td>'+'<td>'+result[i].age+'</td>'+'<td>'+result[i].name+'</td>'
+    +'<td>'+
+    "<button id='b' data-save='"+result[i]._id+"'>save</button><button id='c' data-remove='"+result[i]._id+"'>delete</button>"+
+    '</td>');
+}
+$('#b').click(function(){
+  studentCollection.save();
+});
+$('#c').click(remove);
+
+
 console.log(result);
 
 </script>

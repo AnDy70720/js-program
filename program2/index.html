@@ -12,6 +12,7 @@
             <tr>
                 <td id='n'>id</td>
                 <td>姓名</td>
+                <td>操作</td>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <script>
+  var newStudent ={
+    name:$('#x').val(),
+    age:$('#y').val()
+  }
+  
+  console.log(studentCollection.find());
+$('#b').click(function(){
+  studentCollection.save();
+});
 var fdb = new ForerunnerDB();
 var db = fdb.db("class");
 
@@ -38,19 +48,27 @@ var newStudent = {
     name: "Koding",
     age: 18
 };
-for(var i =1;i<=10;i++){
-    var newStudent2= {
-        name: "Koding",
-        age: 8
-    }
-studentCollection.insert(newStudent2);
+var newStudent2= {
+    name: "Koding",
+    age: 8
+}
+
+var newStudent3={
+  name:"Steve",
+  age:9
+}
+var newStudent4={
+  name:'Fiona',
+  age:10
 }
 studentCollection.insert(newStudent);
-var result =studentCollection.find();
+studentCollection.insert(newStudent3);
+studentCollection.insert(newStudent4);
+
+studentCollection.insert(newStudent);
+
+var result = studentCollection.find();
 console.log(result);
-console.log('my name :'+result[1].name);
-studentCollection.save();
-$('#n').append(result[1]);
 </script>
 </body>
 </html>
